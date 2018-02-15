@@ -7,20 +7,38 @@ var wins = 0;
 var losses = 0;
 var guessLeft = 9;
 var userGuess = [];
+var wrongGuess = [];
 
 document.onkeyup = function (event) {
   //if guess is not inside choise
   if (choise.indexOf(event.key) === -1){
-    //take away one guess
-    guessLeft--;
-    //Push guess to user guess arrey
-    userGuess.push(event.key);
+      //take away one guess
+      guessLeft--;
+      //Push guess to user guess arrey
+      userGuess.push(event.key);
+  }
+  //if guess is inside choise
+  if (choise.indexOf(event.key) >= 0 ) {
+    wins++;
+  }
+  
+  else{
+    wrongGuess.push(event.key);
+  } 
 
+  if (guessLeft === 0){
+    alert("game over")
   }
 
-document.getElementById("guessLeft").textContent = guessLeft;
-document.getElementById("guessed").textContent = userGuess;
+  if (guessLeft === 0){
+    losses++
+  }
 
+
+document.getElementById("guessLeft").textContent = guessLeft;
+document.getElementById("guessed").textContent = wrongGuess;
+document.getElementById("wins").textContent = wins;
+document.getElementById("loss").textContent = losses;
 }
 
 
