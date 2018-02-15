@@ -38,7 +38,7 @@ document.onkeyup = function (event) {
           guessLeft--;
           
         //Push the letter to array of guessed letters
-          wrongGuess.push(event.key);
+         wrongGuess.push(event.key);
          
       }
       
