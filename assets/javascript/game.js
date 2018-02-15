@@ -3,42 +3,64 @@ var letters = ["a", "b","c","d","e","f","g","h","i","j","k","l","m","n","o","p",
 
 //computer picks a random word from words
 var choise = letters[Math.floor(Math.random() * letters.length)];
+//Store number of wins
 var wins = 0;
+//Store number of losses 
 var losses = 0;
+//How many guesses does user have left before game over
 var guessLeft = 9;
-var userGuess = [];
+//store al wrong guesses
 var wrongGuess = [];
+//Store the sounds that start when first key is pressed
+var audio = new Audio('captainplanet24.mp3');
 
+// Function that starts new game
 function newGame() {
-  choise = letters[Math.floor(Math.random() * letters.length)];
+  //Pick new lettter 
+  choise = letters[Math.floor(Math.random() * letters.length)]; 
+  //Set wrong guess to 0
+  wrongGuess = []; 
+  //get 9 lifes 
+  guessLeft = 9;
 }
 
-document.onkeyup = function (event) { 
-      //if guess is not inside choise
+
+//When key is pressed start game
+document.onkeyup = function (event) {  
+
+  //Start play sound when game is started. 
+  audio.play();
+
+      //If the pressed key is not the chosen word..
       if (choise.indexOf(event.key) === -1){
-          //take away one guess
+          
+        //take away one guess
           guessLeft--;
-          //Push guess to user guess arrey
-          userGuess.push(event.key);
-      }
-      //if guess is inside choise
-      if (choise.indexOf(event.key) >= 0 ) {
-        wins++;
-        wrongGuess = [];
-        guessLeft = 9;
-        newGame()
+          
+        //Push the letter to array of guessed letters
+          wrongGuess.push(event.key);
+         
       }
       
-      else{
-        wrongGuess.push(event.key);
-      } 
-
+      // guessed letter is inside choise
+      else if (choise.indexOf(event.key) >= 0 ) {
+        
+        //add to wins
+        wins++;
+        //Tell user they are right 
+        alert("whoohoo you won!")
+        //start new game
+        newGame();
+      }
+      
+      // to know game over iff guessleft = 0 
       if (guessLeft === 0){
+        //then allert user game over 
         alert("game over")
-        wrongGuess = [];
+        //add 1 to losses 
         losses++
-        guessLeft = 9;
-        newGame()
+        //start new game
+        newGame();
       }
 
 
