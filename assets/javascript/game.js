@@ -24,10 +24,12 @@ function newGame() {
   guessLeft = 9;
 }
 
+console.log(choise)
 
 //When key is pressed start game
 document.onkeyup = function (event) {  
 
+  console.log(choise)
   //Start play sound when game is started. 
   audio.play();
 
